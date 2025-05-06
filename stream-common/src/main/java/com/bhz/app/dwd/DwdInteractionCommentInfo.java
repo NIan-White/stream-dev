@@ -82,6 +82,6 @@ public class DwdInteractionCommentInfo {
         // 写入
         joinedTable.executeInsert(Constant.TOPIC_DWD_INTERACTION_COMMENT_INFO);
 
-        env.execute("dwd_join");
+        env.disableOperatorChaining();
     }
 }

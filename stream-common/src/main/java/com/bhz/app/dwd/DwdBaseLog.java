@@ -201,6 +201,8 @@ public class DwdBaseLog {
         streamMap.put(ACTION,actionDS);
         streamMap.put(PAGE,pageDS);
 
+//        env.disableOperatorChaining();
+
         streamMap
                 .get(PAGE)
                 .sinkTo(FlinkSinkUtil.getKafkaSink(Constant.TOPIC_DWD_TRAFFIC_PAGE));
