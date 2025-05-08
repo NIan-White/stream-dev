@@ -27,7 +27,7 @@ import redis.clients.jedis.JedisPoolConfig;
  *          注意：如果维度数据发生了变化，需要将缓存的数据清除掉
  */
 public class RedisUtil {
-    private static JedisPool jedisPool;
+    private static final JedisPool jedisPool;
     static {
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxTotal(200);

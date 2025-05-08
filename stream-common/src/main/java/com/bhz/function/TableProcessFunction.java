@@ -23,8 +23,8 @@ import java.util.*;
 
 public class TableProcessFunction extends BroadcastProcessFunction<JSONObject, TableProcessDim, Tuple2<JSONObject,TableProcessDim>> {
 
-    private MapStateDescriptor<String, TableProcessDim> mapStateDescriptor;
-    private Map<String,TableProcessDim> configMap = new HashMap<>();
+    private final MapStateDescriptor<String, TableProcessDim> mapStateDescriptor;
+    private final Map<String,TableProcessDim> configMap = new HashMap<>();
 
     public TableProcessFunction(MapStateDescriptor<String, TableProcessDim> mapStateDescriptor) {
         this.mapStateDescriptor = mapStateDescriptor;

@@ -100,7 +100,7 @@ public class HBaseUtil {
             }
             admin.disableTable(tableNameObj);
             admin.deleteTable(tableNameObj);
-            System.out.println("删除的表空间" + namespace + "下的表" + tableName + "");
+            System.out.println("删除的表空间" + namespace + "下的表" + tableName);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
