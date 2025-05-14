@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class DbusBanBlackListUserInfo2Kafka {
 
-    private static final String kafka_botstrap_servers = ConfigUtils.getString("kafka.bootstrap.servers");
+    public static final String kafka_botstrap_servers = ConfigUtils.getString("kafka.bootstrap.servers");
     private static final String kafka_db_fact_comment_topic = ConfigUtils.getString("kafka.db.fact.comment.topic");
     private static final String kafka_result_sensitive_words_topic = ConfigUtils.getString("kafka.result.sensitive.words.topic");
 
