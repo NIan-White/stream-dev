@@ -1,11 +1,12 @@
-package cm.bhz.function;
+package cm.bhz;
 
-import cm.bhz.bean.DimBaseCategory;
-import cm.bhz.bean.DimCategoryCompare;
-import cm.bhz.util.JdbcUtils;
+import cm.bhz.app.dim.DimBaseCategory;
+import cm.bhz.app.dim.DimCategoryCompare;
 import com.alibaba.fastjson.JSONObject;
-import com.bhz.util.ConfigUtils;
 
+
+import com.bhz.util.ConfigUtils;
+import com.bhz.util.JdbcUtil;
 
 
 import org.apache.flink.api.common.functions.RichMapFunction;
@@ -19,9 +20,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Package com.retailersv1.func.MapDeviceMarkModel
- * @Author zhou.han
- * @Date 2025/5/13 21:34
+ * @Package com.lzr.fun.MapDeviceAndSearchMarkModelFunc
+ * @Author lv.zirao
+ * @Date 2025/5/14 14:09
  * @description: 设备打分模型
  */
 public class MapDeviceAndSearchMarkModelFunc extends RichMapFunction<JSONObject,JSONObject> {
@@ -38,18 +39,15 @@ public class MapDeviceAndSearchMarkModelFunc extends RichMapFunction<JSONObject,
         this.categoryMap = new HashMap<>();
         // 将 DimBaseCategory 对象存储到 Map中  加快查询
         for (DimBaseCategory category : dimBaseCategories) {
-            categoryMap.put(category.getB3name(), category);
+            categoryMap.put(category.getName3(), category);
         }
     }
 
     @Override
     public void open(Configuration parameters) throws Exception {
-        connection = JdbcUtils.getMySQLConnection(
-                ConfigUtils.getString("jdbc:mysql://cdh03:3306//realtime_v1"),
-                ConfigUtils.getString("root"),
-                ConfigUtils.getString("root"));
-        String sql = "select id, category_name, search_category from realtime_v1.category_compare_dic;";
-        dimCategoryCompares = JdbcUtils.queryList2(connection, sql, DimCategoryCompare.class, true);
+        connection = JdbcUtil.getMySQLConnection();
+        String sql = "select id, category_name, search_category from realtime_dmp.category_compare_dic;";
+        dimCategoryCompares = JdbcUtil.queryList(connection, sql, DimCategoryCompare.class, true);
         super.open(parameters);
     }
 
@@ -82,7 +80,7 @@ public class MapDeviceAndSearchMarkModelFunc extends RichMapFunction<JSONObject,
         if (searchItem != null && !searchItem.isEmpty()) {
             DimBaseCategory category = categoryMap.get(searchItem);
             if (category != null) {
-                jsonObject.put("b1_category", category.getB1name());
+                jsonObject.put("b1_category", category.getName1());
             }
         }
         // search

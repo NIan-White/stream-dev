@@ -32,7 +32,7 @@ public class MysqlToKafka {
 
         mySQLSource.print();
 
-        KafkaSink<String> topic_db = FlinkSinkUtil.getKafkaSink("ods_user_profile");
+        KafkaSink<String> topic_db = FlinkSinkUtil.getKafkaSink("Damopan_topic_db");
 
         mySQLSource.sinkTo(topic_db);
 

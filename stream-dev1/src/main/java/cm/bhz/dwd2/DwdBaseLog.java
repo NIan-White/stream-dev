@@ -1,4 +1,4 @@
-package cm.bhz.app.dwd;
+package cm.bhz.dwd2;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -27,9 +27,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Package com.bhx.app.bwd.DwdBaseLog
- * @Author huihzong.bai
- * @Date 2025/5/12 10:35
+ * @Package com.bhz.app.dwd.DwdBaseLog
+ * @Author Wenzhen.Xie
+ * @Date 2025/4/11 10:35
  * @description: DwdBaseLog
  */
 
@@ -48,7 +48,7 @@ public class DwdBaseLog {
 
         env.enableCheckpointing(5000L, CheckpointingMode.EXACTLY_ONCE);
 
-        KafkaSource<String> kafkaSource = FlinkSourceUtil.getKafkaSource("topic_log", "dwd_log");
+        KafkaSource<String> kafkaSource = FlinkSourceUtil.getKafkaSource("Damopan_topic_log", "dwd_log");
 
         DataStreamSource<String> kafkaStrDS = env
                 .fromSource(kafkaSource, WatermarkStrategy.noWatermarks(), "Kafka_Source");

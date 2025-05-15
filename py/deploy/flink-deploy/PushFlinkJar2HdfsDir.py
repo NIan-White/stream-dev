@@ -4,8 +4,10 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from sqlite3 import Connection
+
 from hdfs import InsecureClient
-from fabric import Connection
+# from fabric import Connection
 
 maven_clean_command = "mvn -DskipTests clean -P prod"
 maven_package_command = "mvn package -Dfile.encoding=UTF-8 -DskipTests=true -P prod"
