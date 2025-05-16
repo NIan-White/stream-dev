@@ -11,6 +11,7 @@
     <modules>
         <module>stream-common</module>
         <module>stream-dev1</module>
+        <module>stream-dev2</module>
     </modules>
 
 
