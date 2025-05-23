@@ -122,7 +122,7 @@ public class DwdBaseLog {
                     }
                 }
         );
-//        fixedDS.print();
+        fixedDS.print();
 
         //定义侧输出流标签
         OutputTag<String> errTag = new OutputTag<String>("errTag") {};
